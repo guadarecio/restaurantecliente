@@ -1,7 +1,15 @@
 import React from "react";
+import { Routes, Route } from "react-router";
+import Ordenes from "./Components/Paginas/Ordenes";
 
 function App() {
-  return <h1 className="text-3xl font-light">Hola Mundo</h1>;
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Ordenes />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
