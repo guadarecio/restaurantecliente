@@ -1,12 +1,27 @@
 import React from "react";
+import { useFormik } from "formik";
 
 const NuevoPlato = () => {
+  // Validación y datos del formulario
+  const formik = useFormik({
+    initialValues: {
+      nombre: "",
+      precio: "",
+      categoria: "",
+      imagen: "",
+      descripcion: "",
+    },
+    onSubmit: (datos) => {
+      console.log(datos);
+    },
+  });
+
   return (
     <>
       <h1 className="text-3xl font-light mb-4"> Agregar Plato </h1>
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -19,6 +34,8 @@ const NuevoPlato = () => {
                 id="nombre"
                 type="text"
                 placeholder="Nombre del plato"
+                value={formik.values.nombre}
+                onChange={formik.handleChange}
               />
             </div>
 
@@ -35,6 +52,8 @@ const NuevoPlato = () => {
                 type="number"
                 placeholder="$20"
                 min="0"
+                value={formik.values.precio}
+                onChange={formik.handleChange}
               />
             </div>
 
@@ -49,6 +68,8 @@ const NuevoPlato = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight fcus:outline-none focus:shadow-outline"
                 id="categoria"
                 name="categoria"
+                value={formik.values.categoria}
+                onChange={formik.handleChange}
               >
                 <option value=""> -- Seleccione --</option>
                 <option value="desayuno"> Desayuno</option>
@@ -70,6 +91,8 @@ const NuevoPlato = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight fcus:outline-none focus:shadow-outline"
                 id="imagen"
                 type="file"
+                value={formik.values.imagen}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="mb-4">
@@ -83,6 +106,8 @@ const NuevoPlato = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight fcus:outline-none focus:shadow-outline h-40"
                 id="descripcion"
                 placeholder="Descripción del Plato"
+                value={formik.values.descripcion}
+                onChange={formik.handleChange}
               ></textarea>
               <input
                 type="submit"
